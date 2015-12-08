@@ -13,7 +13,7 @@ var w: Window
 var e = UnsafeMutablePointer<_XEvent>.alloc(1)
 
 // The text to display
-var msg = "Hello"
+var msg = "Hello Swift World"
 
 // A pointer to the current X11 Screen
 var s: UnsafeMutablePointer<Screen>
@@ -31,7 +31,7 @@ s = XDefaultScreenOfDisplay(d)
 let rootWindow = s.memory.root
 
 // Create our window
-w = XCreateSimpleWindow(d, rootWindow, 10, 10, 100, 100, 1, s.memory.black_pixel, s.memory.white_pixel)
+w = XCreateSimpleWindow(d, rootWindow, 10, 10, 200, 100, 1, s.memory.black_pixel, s.memory.white_pixel)
 
 // Define the events we which to receive from the X11 Server
 XSelectInput(d, w, ExposureMask | KeyPressMask)
@@ -48,8 +48,8 @@ loop: while true {
   switch e.memory.type {
     // The window has to be drawn
     case Expose:
-    XFillRectangle(d, w, s.memory.default_gc, 20, 20, 10, 10)
-    XDrawString(d, w, s.memory.default_gc, 10, 50, msg, Int32(msg.characters.count))
+    XFillRectangle(d, w, s.memory.default_gc, 20, 20, 10, 10) // draw a small black rectangle
+    XDrawString(d, w, s.memory.default_gc, 10, 70, msg, Int32(msg.characters.count)) // draw the text
 
     // The user did press
     case KeyPress:
