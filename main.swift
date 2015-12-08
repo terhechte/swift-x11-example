@@ -4,7 +4,7 @@ import CX11.X
 /// Define Variables
 
 // The X11 Display
-var d: _XPrivDisplay
+var d: Display
 
 // The window which we will create
 var w: Window
@@ -28,7 +28,7 @@ if d == nil {
 s = XDefaultScreenOfDisplay(d)
 
 // And the current root window on that screen
-let rootWindow = s.memory.root
+let rootWindow = RootWindow(d, s.memory)
 
 // Create our window
 w = XCreateSimpleWindow(d, rootWindow, 10, 10, 200, 100, 1, s.memory.black_pixel, s.memory.white_pixel)
