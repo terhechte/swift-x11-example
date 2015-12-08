@@ -2,12 +2,12 @@
 
 A simple example that shows how to write a X11 app on Linux in Swift using the new package manager
 
-# Requirements
+## Requirements
 
 - Swift needs to be installed on your Linux system. The binary distribution from Swift.org is enough, you don't need to build it yourself.
 - The `swift` command should also be somewhere in your `$PATH`
 
-# Running
+## Running
 
 To use this, simply check out the repo (preferrably on Linux) and do the following in the folder:
 
@@ -20,5 +20,7 @@ Run it via:
 `.build/debug/swift-x11-example`
 
 This will execute the binary, and a small X11 Window should appear on your desktop:
+
+![Ubuntu Screenshot](/screenshot.png?raw=true "Ubuntu Screenshot")
 
 
