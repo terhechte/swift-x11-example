@@ -1,16 +1,16 @@
-import CX11.Xlib
-import CX11.X
+import X11.Xlib
+import X11.X
 
 /// Define Variables
 
 // The X11 Display
-var d: _XPrivDisplay
+var d: _XPrivDisplay?
 
 // The window which we will create
 var w: Window
 
 // The events which X11 generates for us will be stored here
-var e = UnsafeMutablePointer<_XEvent>.alloc(1)
+var e = UnsafeMutablePointer<_XEvent>.allocate(capacity:1)
 
 // The text to display
 var msg = "Hello Swift World"
@@ -21,7 +21,7 @@ var s: UnsafeMutablePointer<Screen>
 // Try to open the display. Calling this without X11 running will fail
 d = XOpenDisplay(nil)
 if d == nil {
-	fatalError("cannot open display")
+  fatalError("cannot open display")
 }
 
 // Get the default screen
