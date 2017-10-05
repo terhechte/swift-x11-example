@@ -1,0 +1,1 @@
+{"object": {"dependencies": [{"basedOn": null, "name": "X11", "repositoryURL": "https://github.com/aestesis/X11.git", "state": {"checkoutState": {"branch": null, "revision": "82d107337341081ab056729e25da97c6c08b58a6", "version": "1.0.2"}, "name": "checkout"}, "subpath": "X11.git--5699201827698620002"}]}, "version": 1}

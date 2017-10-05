@@ -28,10 +28,10 @@ if d == nil {
 s = XDefaultScreenOfDisplay(d)
 
 // And the current root window on that screen
-let rootWindow = s.memory.root
+let rootWindow = s.pointee.root
 
 // Create our window
-w = XCreateSimpleWindow(d, rootWindow, 10, 10, 200, 100, 1, s.memory.black_pixel, s.memory.white_pixel)
+w = XCreateSimpleWindow(d, rootWindow, 10, 10, 200, 100, 1, s.pointee.black_pixel, s.pointee.white_pixel)
 
 // Define the events we which to receive from the X11 Server
 XSelectInput(d, w, ExposureMask | KeyPressMask)
@@ -45,11 +45,11 @@ loop: while true {
   // Wait for the next event
   XNextEvent(d, e)
 
-  switch e.memory.type {
+  switch e.pointee.type {
     // The window has to be drawn
     case Expose:
-    XFillRectangle(d, w, s.memory.default_gc, 20, 20, 10, 10) // draw a small black rectangle
-    XDrawString(d, w, s.memory.default_gc, 10, 70, msg, Int32(msg.characters.count)) // draw the text
+    XFillRectangle(d, w, s.pointee.default_gc, 20, 20, 10, 10) // draw a small black rectangle
+    XDrawString(d, w, s.pointee.default_gc, 10, 70, msg, Int32(msg.characters.count)) // draw the text
 
     // The user did press
     case KeyPress:

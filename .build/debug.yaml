@@ -1,0 +1,43 @@
+client:
+  name: swift-build
+tools: {}
+targets:
+  "main": ["<DEMO.module>","<x11-example.exe>"]
+  "test": ["<DEMO.module>","<x11-example.exe>"]
+  "DEMO.module": ["<DEMO.module>"]
+  "x11-example.exe": ["<x11-example.exe>"]
+default: "main"
+commands: 
+  "<C.DEMO.module>":
+    tool: phony
+    inputs: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.swiftmodule"]
+    outputs: ["<DEMO.module>"]
+
+  "<C.x11-example.exe>":
+    tool: phony
+    inputs: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/x11-example"]
+    outputs: ["<x11-example.exe>"]
+
+  "C.DEMO.module":
+    tool: swift-compiler
+    executable: "/opt/swift-4.0-RELEASE-ubuntu16.04/usr/bin/swiftc"
+    module-name: "DEMO"
+    module-output-path: "/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.swiftmodule"
+    inputs: ["/home/renan/git/github-swift/x11-example/main.swift"]
+    outputs: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.build/main.swift.o","/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.swiftmodule"]
+    import-paths: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.build"
+    objects: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.build/main.swift.o"]
+    other-args: ["-swift-version","4","-target","x86_64-unknown-linux","-sdk","/","-Onone","-g","-enable-testing","-j8","-DSWIFT_PACKAGE","-Xcc","-fmodule-map-file=/home/renan/git/github-swift/x11-example/.build/checkouts/X11.git--5699201827698620002/module.modulemap","-module-cache-path","/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/ModuleCache"]
+    sources: ["/home/renan/git/github-swift/x11-example/main.swift"]
+    is-library: false
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "C.x11-example.exe":
+    tool: shell
+    description: "Linking ./.build/x86_64-unknown-linux/debug/x11-example"
+    inputs: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.build/main.swift.o"]
+    outputs: ["/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/x11-example"]
+    args: ["/opt/swift-4.0-RELEASE-ubuntu16.04/usr/bin/swiftc","-target","x86_64-unknown-linux","-sdk","/","-g","-L","/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug","-o","/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/x11-example","-module-name","x11-example","-emit-executable","-Xlinker","-rpath=$ORIGIN","/home/renan/git/github-swift/x11-example/.build/x86_64-unknown-linux/debug/DEMO.build/main.swift.o"]
+
