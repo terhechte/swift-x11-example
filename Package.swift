@@ -1,7 +1,16 @@
+// swift-tools-version:4.0
+
 import PackageDescription
 
 let package = Package(
-  dependencies: [
-    .Package(url: "https://github.com/terhechte/CX11.swift.git", majorVersion: 1)
-  ]
+	name:"x11-example",
+	products: [
+        .executable(name: "x11-example",targets: ["DEMO"]),
+    ],
+  	dependencies: [
+    	.package(url: "https://github.com/aestesis/X11.git", from: "1.0.2")
+    ],
+    targets: [
+        .target(name: "DEMO",dependencies: ["X11"],path:".")
+    ]
 )
