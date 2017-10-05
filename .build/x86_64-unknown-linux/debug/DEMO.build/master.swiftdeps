@@ -1,5 +1,0 @@
-version: "Swift version 4.0 (swift-4.0-RELEASE)"
-options: "a9fbc603841e291d2015079538ff15c4"
-build_time: [1507168891, 422732600]
-inputs:
-  "/home/renan/git/github-swift/x11-example/main.swift": [1507168887, 0]
